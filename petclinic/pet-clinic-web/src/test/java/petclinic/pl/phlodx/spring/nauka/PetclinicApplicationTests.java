@@ -1,4 +1,4 @@
-package pl.phlodx.spring.nauka.petclinic;
+package petclinic.pl.phlodx.spring.nauka;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

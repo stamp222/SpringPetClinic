@@ -1,4 +1,4 @@
-package pl.phlodx.spring.nauka.petclinic.model;
+package petclinic.pl.phlodx.spring.nauka.model;
 
 public class PetType {
     private String name;
