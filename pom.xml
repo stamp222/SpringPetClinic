@@ -4,7 +4,7 @@
 
     <groupId>nauka</groupId>
     <artifactId>petclinic</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
@@ -64,6 +64,8 @@
                 <configuration>
                     <goals>install</goals>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <localCheckout>true</localCheckout>
+                    <pushChanges>false</pushChanges>
                 </configuration>
             </plugin>
             <plugin>
@@ -105,10 +107,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-    <scm>
-        <developerConnection>scm:git:git@github.com:stamp222/SpringPetClinic.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
 </project>
