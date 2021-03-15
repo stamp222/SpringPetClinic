@@ -1,5 +1,6 @@
 package petclinic.pl.phlodx.spring.nauka.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import petclinic.pl.phlodx.spring.nauka.model.Speciality;
 import petclinic.pl.phlodx.spring.nauka.services.SpecialtiesService;
@@ -7,6 +8,7 @@ import petclinic.pl.phlodx.spring.nauka.services.SpecialtiesService;
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class SpecialitiesMapService extends AbstractMapService<Speciality, Long> implements SpecialtiesService {
     @Override
     public Set<Speciality> findAll() {

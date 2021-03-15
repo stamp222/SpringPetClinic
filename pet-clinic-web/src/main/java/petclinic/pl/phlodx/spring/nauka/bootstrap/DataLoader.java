@@ -3,10 +3,7 @@ package petclinic.pl.phlodx.spring.nauka.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import petclinic.pl.phlodx.spring.nauka.model.*;
-import petclinic.pl.phlodx.spring.nauka.services.OwnerService;
-import petclinic.pl.phlodx.spring.nauka.services.PetTypeService;
-import petclinic.pl.phlodx.spring.nauka.services.SpecialtiesService;
-import petclinic.pl.phlodx.spring.nauka.services.VetService;
+import petclinic.pl.phlodx.spring.nauka.services.*;
 
 import java.time.LocalDate;
 
@@ -17,12 +14,14 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtiesService specialtiesService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtiesService specialtiesService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtiesService specialtiesService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtiesService = specialtiesService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -97,6 +96,15 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(owner2);
 
         System.out.println("Owners are loaded...");
+
+        Visit visit = new Visit();
+        visit.setDate(LocalDate.now());
+        visit.setDescription("visit description");
+        visit.setPet(petMadzi);
+
+        visitService.save(visit);
+
+        System.out.println("Visit saved");
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Magda");
