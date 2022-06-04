@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OwnerServiceMapTest {
 
-    OwnerServiceMap ownerServiceMap;
+    OwnerMapService ownerServiceMap;
     private final Long OWNER_ID = 1L;
     final String LAST_NAME = "Peralta";
 
     @BeforeEach
     void setUp() {
-        ownerServiceMap = new OwnerServiceMap(new PetTypeMapService(), new PetServiceMap());
+        ownerServiceMap = new OwnerMapService(new PetTypeMapService(), new PetMapService());
         ownerServiceMap.save(Owner.builder().id(OWNER_ID).lastName(LAST_NAME).build());
     }
 
