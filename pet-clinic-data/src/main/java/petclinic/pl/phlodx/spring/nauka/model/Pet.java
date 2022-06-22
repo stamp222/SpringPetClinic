@@ -1,8 +1,18 @@
 package petclinic.pl.phlodx.spring.nauka.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,10 +21,20 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "pets")
 public class Pet  extends BaseEntity{
+
+    @Builder
+    public Pet(Long id, PetType petType, Owner owner, LocalDate birthDay, String name, Set<Visit> visits) {
+        super(id);
+        this.petType = petType;
+        this.owner = owner;
+        this.birthDay = birthDay;
+        this.name = name;
+        if (visits != null)
+            this.visits = visits;
+    }
 
     @ManyToOne
     @JoinColumn(name = "type_id")
@@ -33,4 +53,8 @@ public class Pet  extends BaseEntity{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private Set<Visit> visits = new HashSet<>();
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
