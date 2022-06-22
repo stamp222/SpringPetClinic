@@ -25,14 +25,6 @@ public class OwnerController {
         this.ownerService = ownerService;
     }
 
-    @RequestMapping({"", "/", "/index", "/index.html"})
-    public String listOwners(Model model) {
-
-        model.addAttribute("owners", ownerService.findAll());
-
-        return "owners/index";
-    }
-
     @RequestMapping("/find")
     public String findOwners(Model model) {
         model.addAttribute("owner", Owner.builder().build());
@@ -40,7 +32,7 @@ public class OwnerController {
     }
 
     @GetMapping("/{ownerId}")
-    public ModelAndView showOwner(@PathVariable("ownerId") Long ownerId) {
+    public ModelAndView showOwner(@PathVariable Long ownerId) {
         ModelAndView modelAndView = new ModelAndView("owners/ownerDetails");
         modelAndView.addObject(ownerService.findById(ownerId));
         return modelAndView;
@@ -57,7 +49,7 @@ public class OwnerController {
             owner.setLastName("");
         }
 
-        List<Owner> allByLastNameLike = ownerService.findAllByLastNameLike(owner.getLastName());
+        List<Owner> allByLastNameLike = ownerService.findAllByLastNameLike("%"+owner.getLastName()+"%");
 
         if(allByLastNameLike.isEmpty()) {
             result.rejectValue("lastName", "notFound", "not found");
