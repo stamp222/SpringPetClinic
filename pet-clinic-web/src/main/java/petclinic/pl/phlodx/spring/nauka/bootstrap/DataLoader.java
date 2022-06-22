@@ -79,7 +79,7 @@ public class DataLoader implements CommandLineRunner {
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Emy");
-        owner2.setLastName("Santiago");
+        owner2.setLastName("Peralta");
         owner2.setAddress("Malinka 9");
         owner2.setCity("Kobraadsa");
         owner2.setPhoneNb("52515");
