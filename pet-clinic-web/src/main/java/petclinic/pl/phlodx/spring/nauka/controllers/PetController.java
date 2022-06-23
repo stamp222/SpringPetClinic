@@ -88,13 +88,20 @@ public class PetController {
 
     @PostMapping("/pets/{petId}/edit")
     public String processUpdateForm(Model model, @Valid Pet pet, BindingResult result, Owner owner) {
+        if (StringUtils.hasLength(pet.getName()) && owner.getPet(pet.getName()) != null) {
+            result.rejectValue("name", "duplicate", "already exists");
+        }
+
         if (result.hasErrors()) {
-            pet.setOwner(owner);
             model.addAttribute("pet", pet);
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         } else {
-            owner.getPets().add(pet);
-            petService.save(pet);
+            Pet foundPet = petService.findById(pet.getId());
+            foundPet.setOwner(owner);
+            foundPet.setPetType(pet.getPetType());
+            foundPet.setName(pet.getName());
+            foundPet.setBirthDay(pet.getBirthDay());
+            petService.save(foundPet);
             return "redirect:/owners/" + owner.getId();
         }
     }
