@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'vets')}"><head>
     <meta charset="UTF-8">
-    <title>Vets</title>
+    <title>List of vets</title>
 </head>
 <body>
-<h1 th:text="'List of vets'">List of vets</h1>
+<h1>Veterinarians</h1>
 
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Id</th>
             <th>Name</th>
-            <th>LastName</th>
+            <th>Specialties</th>
         </tr>
     </thead>
     <tbody>
         <tr th:each="vet : ${vets}">
-            <td th:text="${vet?.id}">1</td>
-            <td th:text="${vet?.firstName}">Nie</td>
-            <td th:text="${vet?.lastName}">Wyszlo</td>
+            <td th:text="${vet?.firstName + ' ' +vet?.lastName}">Nie</td>
+            <td><span th:each="specialty : ${vet?.specialities}"
+            th:text="${specialty?.description + ' '}"/>
+                <span th:if="${vet?.specialities?.size() == 0}">none</span></td>
         </tr>
     </tbody>
 </table>

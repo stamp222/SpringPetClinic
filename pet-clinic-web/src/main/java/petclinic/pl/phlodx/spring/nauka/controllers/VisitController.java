@@ -18,6 +18,8 @@ import petclinic.pl.phlodx.spring.nauka.services.PetService;
 import petclinic.pl.phlodx.spring.nauka.services.VisitService;
 
 import javax.validation.Valid;
+import java.beans.PropertyEditorSupport;
+import java.time.LocalDate;
 
 @Controller
 @Slf4j
@@ -37,6 +39,13 @@ public class VisitController {
     @InitBinder
     public void initBinder(WebDataBinder databinder) {
         databinder.setDisallowedFields("id");
+
+        databinder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport()  {
+            @Override
+            public void setAsText(String text) {
+                setValue(LocalDate.parse(text));
+            }
+        });
     }
 
     @ModelAttribute("visit")
