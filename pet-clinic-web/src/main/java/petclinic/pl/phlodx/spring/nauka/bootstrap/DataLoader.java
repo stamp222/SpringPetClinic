@@ -2,8 +2,17 @@ package petclinic.pl.phlodx.spring.nauka.bootstrap;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import petclinic.pl.phlodx.spring.nauka.model.*;
-import petclinic.pl.phlodx.spring.nauka.services.*;
+import petclinic.pl.phlodx.spring.nauka.model.Owner;
+import petclinic.pl.phlodx.spring.nauka.model.Pet;
+import petclinic.pl.phlodx.spring.nauka.model.PetType;
+import petclinic.pl.phlodx.spring.nauka.model.Speciality;
+import petclinic.pl.phlodx.spring.nauka.model.Vet;
+import petclinic.pl.phlodx.spring.nauka.model.Visit;
+import petclinic.pl.phlodx.spring.nauka.services.OwnerService;
+import petclinic.pl.phlodx.spring.nauka.services.PetTypeService;
+import petclinic.pl.phlodx.spring.nauka.services.SpecialtiesService;
+import petclinic.pl.phlodx.spring.nauka.services.VetService;
+import petclinic.pl.phlodx.spring.nauka.services.VisitService;
 
 import java.time.LocalDate;
 
@@ -74,6 +83,7 @@ public class DataLoader implements CommandLineRunner {
         petJacka.setOwner(owner1);
         petJacka.setBirthDay(LocalDate.now());
         petJacka.setName("Elon");
+        petJacka.setOwner(owner1);
 
         owner1.getPets().add(petJacka);
 
@@ -89,6 +99,7 @@ public class DataLoader implements CommandLineRunner {
         petMadzi.setOwner(owner2);
         petMadzi.setBirthDay(LocalDate.now());
         petMadzi.setName("Elona");
+        petMadzi.setOwner(owner2);
 
         owner2.getPets().add(petMadzi);
 
